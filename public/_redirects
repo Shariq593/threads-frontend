@@ -1,0 +1,4 @@
+/*    /index.html   200
+
+# Redirect all API requests to the target server
+/api/*  https://threads-new.onrender.com/:splat  200
