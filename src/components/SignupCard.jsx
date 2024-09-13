@@ -24,6 +24,9 @@ import authScreenAtom from '../atoms/authAtoms'
 import useShowToast from '../hooks/useShowToast'
 import userAtom from '../atoms/userAtom'
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
   const setAuthScreen = useSetRecoilState(authScreenAtom)
@@ -40,7 +43,7 @@ export default function SignupCard() {
     const showToast = useShowToast() 
     const handleSignup= async () => {
         try {
-            const res = await fetch("/api/users/signup", {
+            const res = await fetch(baseUrl + "/api/users/signup", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

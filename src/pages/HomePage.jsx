@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import useShowToast from "../hooks/useShowToast";
 import Post from "../components/Post";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 
 const HomePage =() => {
   const [posts,setPosts] = useState([])
@@ -14,7 +16,7 @@ const HomePage =() => {
     const getFeedPost = async () => {
       setLoading(true)
       try {
-        const res = await fetch("/api/posts/feed");
+        const res = await fetch(baseUrl + "/api/posts/feed");
         const data = await res.json()
         if(data.error){
           showToast("Error",data.error,"error")

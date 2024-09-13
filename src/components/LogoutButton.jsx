@@ -5,13 +5,16 @@ import useShowToast from '../hooks/useShowToast'
 import userAtom from '../atoms/userAtom'
 import {FiLogOut} from "react-icons/fi"
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+
 const LogoutButton = () => {
 	const setUser = useSetRecoilState(userAtom);
 	const showToast = useShowToast();
 
 	const handleLogout = async () => {
 		try {
-			const res = await fetch("/api/users/logout", {
+			const res = await fetch(baseUrl + "/api/users/logout", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

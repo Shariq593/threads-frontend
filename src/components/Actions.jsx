@@ -3,7 +3,7 @@ import { useState } from "react"
 import {useRecoilValue} from "recoil"
 import  userAtom  from '../atoms/userAtom';
 import useShowToast from "../hooks/useShowToast";
-
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Actions = ( {post:post_}) => {
 	const user = useRecoilValue(userAtom)
@@ -23,7 +23,7 @@ const Actions = ( {post:post_}) => {
 		if(!user )return showToast("Error",error,"error")
 		setIsReplying(true)
 		try {
-			const res = await fetch("/api/posts/like/" + post._id,{
+			const res = await fetch(baseUrl + "/api/posts/like/" + post._id,{
 				method:"PUT",
 				headers: {
 					"Content-Type": "application/json"
@@ -51,7 +51,7 @@ const Actions = ( {post:post_}) => {
 	const handleReply = async () => {
 		if(!user )return showToast("Error",error,"error")
 		try {
-	const res = await fetch("/api/posts/reply/"+post._id,{
+	const res = await fetch(baseUrl + "/api/posts/reply/"+post._id,{
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json"

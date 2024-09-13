@@ -8,6 +8,7 @@ import { DeleteIcon } from "@chakra-ui/icons"
 import { useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 
 function Post({post,postedBy}) {
@@ -21,7 +22,7 @@ function Post({post,postedBy}) {
     useEffect( () => {
         const getUser = async() => {
             try {
-                const res= await fetch("/api/users/profile/" + postedBy )
+                const res= await fetch(baseUrl + "/api/users/profile/" + postedBy )
                 const data = await res.json()
                 if(data.error){
                   showToast("error",error,"error")
